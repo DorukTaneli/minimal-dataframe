@@ -28,3 +28,16 @@ class Dataframe:
         else:
             raise RuntimeError('Unexpected type {} in __getitem__'.format(type(item)))
 
+
+    def groupby(self, series_name):
+        uniqueItems = []
+        for item in self.dict_series[series_name]:
+            if item not in uniqueItems:
+                uniqueItems.append(item)
+
+        slicesDict = {}
+        for uniqueItem in uniqueItems:
+            # df[df['Animal'] == Falcon]
+            slicesDict[uniqueItem] = self.__getitem__(self.__getitem__(series_name) == uniqueItem)
+
+        return slicesDict

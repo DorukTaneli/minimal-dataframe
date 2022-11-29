@@ -1,7 +1,23 @@
 import series
 from dataframe import Dataframe
 
+def test():
+    df = Dataframe({
+        'Animal': series.StringSeries(['Falcon', 'Falcon', 'Falcon', 'Parrot', 'Parrot']),
+        'Type': series.StringSeries(['Captive', 'Captive', 'Wild', 'Captive', 'Wild']),
+        'Max Speed': series.FloatSeries([380., 320, 370., 24., 26.])
+    })
+
+    'FalconCaptive, FalconWild. ParrotCaptive, ParrotWild'
+    'FalconCaptive380, FalconCaptive320'
+    
+    dfAnimal = df.groupby(['Animal'])
+    print(dfAnimal)
+
 if __name__ == '__main__':
+    test()
+
+    '''
     # construct the dataframe
     df = Dataframe({
         'SKU': series.StringSeries(['X4E', 'T3B', 'F8D', 'C7X'], 'SKU'),
@@ -19,4 +35,4 @@ if __name__ == '__main__':
         ]["SKU"]
 
     print(result)
-
+    '''
